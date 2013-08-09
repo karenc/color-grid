@@ -31,6 +31,25 @@
             }
         });
 
+        var GridTableView = Backbone.View.extend({
+            tagName: 'table',
+            render: function() {
+                var width = this.options.width;
+                var height = this.options.grids.length / width;
+                var i, j;
+                var grid;
+                var tr;
+                for (j = 0; j < height; j++) {
+                    tr = $('<tr>').appendTo(this.$el);
+                    for (i = 0; i < width; i++) {
+                        grid = this.options.grids.get(j * width + i);
+                        tr.append(new GridView({model: grid}).render().el);
+                    }
+                }
+                return this;
+            }
+        });
+
         var ColorPickerView = Backbone.View.extend({
             render: function() {
                 $('#color-picker').farbtastic(function(color) {
@@ -41,7 +60,6 @@
         });
 
         var AppView = Backbone.View.extend({
-            tagName: 'tr',
             initialize: function() {
                 this.grids = new GridTable();
                 this.grids.bind('all', this.render, this);
@@ -50,9 +68,7 @@
             render: function() {
                 new ColorPickerView().render();
                 this.$el.html('');
-                this.grids.each(function(grid) {
-                    this.$el.append(new GridView({model: grid}).render().el);
-                }, this);
+                this.$el.append(new GridTableView({grids: this.grids, width: 7}).render().el);
                 return this;
             }
         });
@@ -62,6 +78,11 @@
     });
 
     Backbone.sync = function(method, model, options) {
+        options.type = 'GET';
+        if (method === 'update') {
+            options.type = 'POST';
+            options.data = model.toJSON();
+        }
         var xhr = options.xhr = $.ajax('cgi-bin/server.cgi?method=' + method, options);
         model.trigger('request', model, xhr, options);
         return xhr;
