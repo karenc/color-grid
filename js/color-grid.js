@@ -31,6 +31,15 @@
             }
         });
 
+        var ColorPickerView = Backbone.View.extend({
+            render: function() {
+                $('#color-picker').farbtastic(function(color) {
+                    window.currentColor = color;
+                });
+                return this;
+            }
+        });
+
         var AppView = Backbone.View.extend({
             tagName: 'tr',
             initialize: function() {
@@ -39,6 +48,7 @@
                 this.grids.fetch();
             },
             render: function() {
+                new ColorPickerView().render();
                 this.$el.html('');
                 this.grids.each(function(grid) {
                     this.$el.append(new GridView({model: grid}).render().el);

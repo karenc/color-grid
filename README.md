@@ -8,6 +8,7 @@ DEPENDENCIES
  * Backbone.js
    * Underscore.js
    * json2.js
+ * farbtastic.js
 
 INSTALL
 -------

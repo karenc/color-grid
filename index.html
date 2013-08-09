@@ -5,8 +5,10 @@
         <script type="text/javascript" src="lib/underscore-min.js"></script>
         <script type="text/javascript" src="lib/json2.js"></script>
         <script type="text/javascript" src="lib/backbone.js"></script>
+        <script type="text/javascript" src="lib/farbtastic.js"></script>
         <script type="text/javascript" src="js/color-grid.js"></script>
 
+        <link rel="stylesheet" href="lib/farbtastic.css" type="text/css" />
         <style type="text/css">
             #main {
                 width: 500px;
@@ -14,16 +16,29 @@
             }
             TABLE {
                 border-collapse: collapse;
+                border: 1px solid black;
             }
             TD {
-                width: 30px;
-                height: 30px;
-                border: 1px solid black;
+                width: 20px;
+                height: 20px;
+            }
+            #color-picker {
+                margin: 20px 0 20px 0;
+            }
+            .instructions {
+                margin: 0;
+                margin-bottom: 20px;
+                padding: 0;
+                text-align: left;
+                font-size: 15px;
             }
         </style>
     </head>
     <body>
         <div id="main">
+            <div id="color-picker"></div>
+            <p class="instructions">Choose a color from the color picker, then click on the grid to change it to that color.</p>
+
             <table id="color-grid">
             </table>
         </div>
