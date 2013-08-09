@@ -6,8 +6,8 @@ import json
 import os
 import shutil
 
-STORAGE = 'colors.txt'
-PREPARE = 'colors.txt.1'
+STORAGE = os.path.join(os.path.dirname(__file__), '../colors.txt')
+PREPARE = os.path.join(os.path.dirname(__file__), '../colors.txt.1')
 
 def initialize():
     colors = ['blue']

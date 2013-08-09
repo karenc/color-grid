@@ -2,6 +2,10 @@ NAME
 ----
     Color Grid
 
+WORKING DEMO
+------------
+[http://www.karen-chan.com/color-grid/](http://www.karen-chan.com/color-grid/)
+
 DEPENDENCIES
 ------------
  * jQuery
